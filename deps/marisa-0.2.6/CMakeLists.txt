@@ -1,5 +1,8 @@
 include_directories(include)
 include_directories(lib)
+if (__SWITCH__)
+    include_directories(include/switch)
+endif ()
 
 set(
   LIBMARISA_SOURCES
