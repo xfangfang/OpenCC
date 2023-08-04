@@ -113,7 +113,11 @@ configure_file(
 
 add_library(libopencc ${LIBOPENCC_SOURCES} ${LIBOPENCC_HEADERS})
 add_library(OpenCC::OpenCC ALIAS libopencc)
-set_target_properties(libopencc PROPERTIES POSITION_INDEPENDENT_CODE ON)
+if (VITASDK)
+  set_target_properties(libopencc PROPERTIES POSITION_INDEPENDENT_CODE OFF)
+else ()
+  set_target_properties(libopencc PROPERTIES POSITION_INDEPENDENT_CODE ON)
+endif ()
 source_group(libopencc FILES ${LIBOPENCC_SOURCES} ${LIBOPENCC_HEADERS})
 target_link_libraries(libopencc marisa)
 target_include_directories(libopencc PUBLIC

@@ -1,6 +1,6 @@
 include_directories(include)
 include_directories(lib)
-if (__SWITCH__)
+if (__SWITCH__ OR VITASDK)
     include_directories(include/switch)
 endif ()
 
@@ -18,5 +18,9 @@ set(
 )
 
 add_library(marisa STATIC ${LIBMARISA_SOURCES})
-set_target_properties(marisa PROPERTIES POSITION_INDEPENDENT_CODE ON)
+if (VITASDK)
+    set_target_properties(marisa PROPERTIES POSITION_INDEPENDENT_CODE OFF)
+else ()
+    set_target_properties(marisa PROPERTIES POSITION_INDEPENDENT_CODE ON)
+endif ()
 source_group(marisa FILES ${LIBMARISA_SOURCES})
